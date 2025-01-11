@@ -1,15 +1,11 @@
 import React from "react";
 import light from "../assets/images/light-mode.svg";
 import dark from "../assets/images/dark-mode.svg";
-export const ToggleThemeButton = () => {
-  const [theme, setTheme] = React.useState("Light");
+import { Theme } from "../utils/modeUtils.ts";
+export const ToggleThemeButton = ({theme, setTheme}) => {
 
   const toggleTheme = () => {
-    if (theme === "Light") {
-      setTheme("Dark");
-    } else {
-      setTheme("Light");
-    }
+    setTheme(theme === Theme.LIGHT ? Theme.DARK : Theme.LIGHT);
   };
   return (
     <>
@@ -20,13 +16,13 @@ export const ToggleThemeButton = () => {
         >
           <div className="bg-black rounded-full w-5 h-5 m-2"></div>
         </div>
-        <p className="text-black dark:text-white py-3 transition-all">
+        <p className="py-3 transition-all">
           {theme} Mode
         </p>
       </div>
       <div className="md:hidden w-16 h-14 bg-slate-300 rounded-full block self-center content-center dark:bg-darker-gray shadow-2xl">
         <img
-          src={theme === "Light" ? dark : light}
+          src={theme === Theme.DARK ? dark : light}
           alt="theme-toggle"
           className="cursor-pointer w-12 h-12 justify-self-center"
           onClick={toggleTheme}

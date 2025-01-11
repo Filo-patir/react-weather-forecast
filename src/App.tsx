@@ -1,34 +1,47 @@
-import React from "react";
+import React, { createContext, useContext, useState } from "react";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import "./App.css";
 import Header from "./components/Header.tsx";
-import { Panel } from "./components/Panel.tsx";
+import { Body } from "./components/Body.tsx";
+import { checkTheme, Theme } from "./utils/modeUtils.ts";
+import { coords } from "./models/coords.ts";
+
+type CoordsProps = {
+    coords: coords | undefined;
+    setCoords: React.Dispatch<React.SetStateAction<coords | undefined>> ;
+  };
+
+const coordsContext = createContext<CoordsProps|undefined>(undefined);
+const themeContext = createContext<Theme>(checkTheme());
+const queryClient = new QueryClient();
 
 function App() {
+  const [theme,setTheme] = useState(checkTheme())
+  const [coords, setCoords] = useState<coords|undefined>();
   return (
-    <>
-      <Header />
-      <main className="flex flex-col items-center justify-center gap-4 w-full py-8 sm:flex-row">
-        <Panel className="flex-1 w-full sm:w-auto" >
-          <h2 className="text-3xl py-6">Alexandria</h2>
-          <div className="flex flex-col items-center justify-center py-6">
-            <h1 className="text-6xl font-bold">09:03</h1>
-            <p>Thurdsay, 31 Aug</p>
+    <themeContext.Provider value={theme}>
+      <div className={`${theme === Theme.LIGHT ? "bg-dark-gradient text-white" : "bg-light-gradient"} sd:p-10 p-3`}>
+    <QueryClientProvider client={queryClient}>
+      <coordsContext.Provider value={{coords,setCoords}}>
+      <Header theme={theme} setTheme={setTheme} setCoords={setCoords} />
+        {
+          coords ? <Body lat={coords.lat} lon={coords.lon} theme={theme} /> : <div className="flex justify-center items-center h-screen">
+          <div className="flex flex-col justify-center items-center">
+            <h1 className="text-2xl font-bold">Please allow location access</h1>
+            <button onClick={handleLocationClick} className="bg-blue-500 hover:bg-blue-700text-white font-bold py-2 px-4 rounded">Next Update ISA</button>
           </div>
-        </Panel>
-        <Panel className="flex-1" >
-          <div>
-            <p>Today</p>
           </div>
-          <div>
-            <p>Tomorrow</p>
-          </div>
-          <div>
-            <p>Next Day</p>
-          </div>
-        </Panel>
-      </main>
-    </>
+        }
+      </coordsContext.Provider>
+      </QueryClientProvider>
+      </div>
+    </themeContext.Provider>
   );
 }
 
 export default App;
+
+
+function handleLocationClick(){
+  
+}
