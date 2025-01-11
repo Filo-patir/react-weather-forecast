@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import SearchSuggestions from "./SearchSuggestions.tsx";
 
 const searchContext = React.createContext<string | undefined>(undefined);
