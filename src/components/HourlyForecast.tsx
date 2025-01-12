@@ -1,5 +1,5 @@
 import React from 'react';
-import windIcon from '@/assets/images/wind_dir.png';
+import windIcon from '../assets/images/wind_dir.png';
 
 type Props = {
   time: string;

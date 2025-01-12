@@ -1,15 +1,16 @@
-import { useQuery } from '@tanstack/react-query'
+import { useQuery } from "@tanstack/react-query";
 
-export default function useSearch(query: string) {
-    const searchQuery = useQuery({
-        queryKey: ["search", query.toString()],
+export default function useLocation() {
+    const locationQuery = useQuery({
+        queryKey: ["location"],
         queryFn: fetchData
     })
-    return searchQuery
+    return locationQuery
 }
 
-const fetchData = async ({ queryKey }: any) => {
-    const apikey = process.env.REACT_APP_WEATHER_API_KEY ?? "no key";
-    const res = await fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${queryKey[1]}&limit=5&appid=${apikey}`)
+const fetchData = async () => {
+    const apikey = process.env.REACT_APP_GEO_API_KEY ?? "no key";
+    console.log(apikey);
+    const res = await fetch(`https://api.geoapify.com/v1/ipinfo?apiKey=${apikey}`)
     return await res.json()
 }

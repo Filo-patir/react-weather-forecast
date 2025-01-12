@@ -14,7 +14,7 @@ export default function useWeatherData({ key, lat, lon }: Props) {
     return weather
 }
 
-const fetchData = async ({ queryKey }) => {
+const fetchData = async ({ queryKey } : { queryKey: string[] }) => {
     const apikey = process.env.REACT_APP_WEATHER_API_KEY ?? "no key";
     const params = new URLSearchParams();
     params.append("appid", apikey);

@@ -1,10 +1,10 @@
 import React from 'react';
 
-import { Theme } from '@/utils/modeUtils';
+import { Theme } from '../utils/modeUtils';
 
 import useWeatherData from '../api/fetchData';
-import { WeatherData } from '../models/weatherData';
-import { WeatherForecast } from '../models/weatherForecast';
+import { WeatherData } from '../models/WeatherData';
+import { WeatherForecast } from '../models/WeatherForecast';
 import { ToIcon } from '../utils/iconUtils';
 import { toLocalDayMonth, toLocalTime } from '../utils/timeUtils';
 import DayForecast from './DayForecast';
@@ -86,17 +86,17 @@ export function Body({ lat, lon, theme }: { lat: number; lon: number; theme: The
         </div>
         <div className="flex flex-row flex-wrap items-center justify-center gap-4">
           <CurrentWeatherDetails
-            icon={require(`../assets/images/humidity_${theme === 'light' ? 'white' : 'black'}.png`)}
+            icon={require(`../assets/images/humidity_${theme === Theme.LIGHT ? 'white' : 'black'}.png`)}
             title="Humidity"
             value={weatherData.main.humidity.toString() + ' %'}
           />
           <CurrentWeatherDetails
-            icon={require(`../assets/images/wind_${theme === 'light' ? 'white' : 'black'}.png`)}
+            icon={require(`../assets/images/wind_${theme === Theme.LIGHT ? 'white' : 'black'}.png`)}
             title="Wind Speed"
             value={`${weatherData.wind.speed.toString()} km/h`}
           />
           <CurrentWeatherDetails
-            icon={require(`../assets/images/pressure_${theme === 'light' ? 'white' : 'black'}.png`)}
+            icon={require(`../assets/images/pressure_${theme === Theme.LIGHT ? 'white' : 'black'}.png`)}
             title="Pressure"
             value={weatherData.main.pressure + ' hPa'}
           />

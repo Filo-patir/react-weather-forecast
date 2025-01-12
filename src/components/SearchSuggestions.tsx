@@ -1,5 +1,5 @@
 import React from "react";
-import useSearch from "../api/getLocation.ts";
+import useSearch from "../api/searchLocation";
 
 type Props = {
     searchQuery: string

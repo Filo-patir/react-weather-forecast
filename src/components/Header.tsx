@@ -6,7 +6,7 @@ import CurrentLocation from './CurrentLocation';
 import Searchbar from './Searchbar';
 import { ToggleThemeButton } from './ToggleThemeButton';
 
-export default function Header({
+export function Header({
   theme,
   setTheme,
   setCoords,
@@ -19,7 +19,7 @@ export default function Header({
     <header className="flex items-baseline justify-around sm:justify-between ">
       <ToggleThemeButton theme={theme} setTheme={setTheme} />
       <Searchbar setCoords={setCoords} />
-      <CurrentLocation />
+      <CurrentLocation setCoords={setCoords} />
     </header>
   );
 }
