@@ -11,13 +11,12 @@ export default function App() {
 
   
   return (
-    <Providers>
-      <div className={`${theme === Theme.LIGHT ? 'bg-dark-gradient text-white' : 'bg-light-gradient'} sd:p-10 p-3 h-full`}>
+      <div className={`${theme === Theme.LIGHT ? 'bg-dark-gradient text-white' : 'bg-light-gradient'} p-10`}>
             <Header theme={theme} setTheme={setTheme} setCoords={setCoords} />
             {coords ? (
               <Body lat={coords.lat} lon={coords.lon} theme={theme} />
             ) : (
-              <div className="flex items-center justify-center h-dvh">
+              <div className="flex items-center justify-center min-h-dvh">
                 <div className="flex flex-col items-center justify-center">
                   <h1 className="text-2xl font-bold">Please allow location access</h1>
                   <button
@@ -28,7 +27,6 @@ export default function App() {
                 </div>
               </div>
             )}
-          </div>
-    </Providers>
+      </div>
   );
 }
