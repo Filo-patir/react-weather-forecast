@@ -10,7 +10,6 @@ export default function useLocation() {
 
 const fetchData = async () => {
     const apikey = process.env.REACT_APP_GEO_API_KEY ?? "no key";
-    console.log(apikey);
     const res = await fetch(`https://api.geoapify.com/v1/ipinfo?apiKey=${apikey}`)
     return await res.json()
 }
