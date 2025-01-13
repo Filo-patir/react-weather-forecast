@@ -1,8 +1,8 @@
 import React from 'react';
-import { ThemeProvider } from './theme.context';
+
 import { CoordsProvider } from './coords.context';
 import { QueryProvider } from './query.provider';
-
+import { ThemeProvider } from './theme.context';
 
 export * from './coords.context';
 export * from './theme.context';

@@ -1,4 +1,5 @@
 import React from 'react';
+
 import windIcon from '../assets/images/wind_dir.png';
 
 type Props = {
@@ -16,7 +17,7 @@ export default function HourlyForecast({ time, temp, icon, wind, wind_dir }: Pro
       <img className="h-1/5" src={icon} alt={icon} />
       <div>{temp}</div>
       <img src={windIcon} alt={wind_dir.toString()} style={{ transform: `rotate(${wind_dir}deg)` }} />
-      <div>{wind}</div>
+      <div className="text-center">{wind}</div>
     </div>
   );
 }

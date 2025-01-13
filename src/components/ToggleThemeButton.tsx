@@ -1,7 +1,7 @@
 import React from 'react';
+
 import dark from '../assets/images/dark-mode.svg';
 import light from '../assets/images/light-mode.svg';
-
 import { Theme } from '../utils/modeUtils';
 
 export const ToggleThemeButton = ({ theme, setTheme }: { theme: Theme; setTheme: (theme: Theme) => void }) => {
@@ -12,7 +12,10 @@ export const ToggleThemeButton = ({ theme, setTheme }: { theme: Theme; setTheme:
     <>
       <div className="flex-col items-center justify-center hidden w-24 md:flex">
         <div
-          className={"flex items-center w-20 border-2 border-black rounded-full cursor-pointer bg-light-gray" + (theme === Theme.LIGHT ? " justify-start" : " justify-end")}
+          className={
+            'flex items-center w-20 border-2 border-black rounded-full cursor-pointer bg-light-gray' +
+            (theme === Theme.LIGHT ? ' justify-start' : ' justify-end')
+          }
           onClick={toggleTheme}
         >
           <div className="w-5 h-5 m-2 bg-black rounded-full"></div>

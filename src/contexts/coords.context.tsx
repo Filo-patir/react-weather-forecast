@@ -1,5 +1,5 @@
-import { coords } from '@/models/coords';
 import React, { createContext, useContext, useState } from 'react';
+import { coords } from '@/models/coords';
 
 type CoordsContextProps = {
   coords: coords | undefined;

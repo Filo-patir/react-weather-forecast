@@ -16,7 +16,7 @@
     ]
   },
   "lint-staged": {
-    "**/*": "prettier --write --ignore-unknown"
+    "**/*": "eslint --fix"
   },
   "browserslist": {
     "production": [

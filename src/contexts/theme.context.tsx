@@ -1,12 +1,13 @@
-import { checkTheme, Theme } from '../utils/modeUtils';
 import React, { createContext, useContext, useState } from 'react';
+
+import { checkTheme, Theme } from '../utils/modeUtils';
 
 type ThemeContextProps = {
   theme: Theme;
   setTheme: (theme: Theme) => void;
 };
 
-export const ThemeContext = createContext<ThemeContextProps| null>(null);
+export const ThemeContext = createContext<ThemeContextProps | null>(null);
 
 export const useTheme = () => {
   const context = useContext(ThemeContext);

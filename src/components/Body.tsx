@@ -1,11 +1,9 @@
 import React from 'react';
 
-import { Theme } from '../utils/modeUtils';
-
 import useWeatherData from '../api/fetchData';
 import { WeatherData } from '../models/WeatherData';
 import { WeatherForecast } from '../models/WeatherForecast';
-import { ToIcon } from '../utils/iconUtils';
+import { Theme, ToIcon } from '../utils/';
 import { toLocalDayMonth, toLocalTime } from '../utils/timeUtils';
 import DayForecast from './DayForecast';
 import HourlyForecast from './HourlyForecast';
@@ -28,7 +26,7 @@ export function Body({ lat, lon, theme }: { lat: number; lon: number; theme: The
   } = useWeatherData({ key: 'forecast', lat, lon });
 
   if (isPending || isForecastPending) {
-    return <p>Loading...</p>;
+    return <p className="w-full text-center">Loading...</p>;
   }
 
   if (isError || isForecastError) {
@@ -100,18 +98,22 @@ export function Body({ lat, lon, theme }: { lat: number; lon: number; theme: The
             title="Pressure"
             value={weatherData.main.pressure + ' hPa'}
           />
-          <CurrentWeatherDetails icon="https://openweathermap.org/img/wn/01d@2x.png" title="09:03" value="24&#8451;" />
+          <CurrentWeatherDetails
+            icon={require(`../assets/images/visibility_${theme === Theme.LIGHT ? 'white' : 'black'}.png`)}
+            title="Visibility"
+            value={weatherData.visibility / 1000 + ' km'}
+          />
         </div>
         <div className="flex items-center justify-center w-full gap-3 sm:hidden">
           <div className="flex items-center justify-center w-1/3 px-3">
-            <img className="h-32 px-3" src={`${ToIcon('01d')}`} alt="weather icon" />
+            <img className="px-3 w-2/3" src={`${ToIcon('01d')}`} alt="weather icon" />
             <div className="flex flex-col items-center justify-center">
               <h6>Sunrise</h6>
               <p>{toLocalTime(weatherData.sys.sunrise, weatherData.timezone)}</p>
             </div>
           </div>
           <div className="flex items-center justify-center w-1/3 px-3">
-            <img className="h-32 px-3" src={`${ToIcon('01n')}`} alt="weather icon" />
+            <img className="w-2/3 px-3" src={`${ToIcon('01n')}`} alt="weather icon" />
             <div className="flex flex-col items-center justify-center">
               <h6>Sunset</h6>
               <p>{toLocalTime(weatherData.sys.sunset, weatherData.timezone)}</p>
@@ -134,7 +136,7 @@ export function Body({ lat, lon, theme }: { lat: number; lon: number; theme: The
             );
           })}
       </Panel>
-      <Panel className="flex flex-col w-full sm:w-8/12" theme={theme}>
+      <Panel className="flex flex-col w-full sm:w-8/12 overflow-x-auto" theme={theme}>
         <h3>Hourly Forecast</h3>
         <div className="flex">
           {weatherForecast.list.slice(0, 7).map((item) => {

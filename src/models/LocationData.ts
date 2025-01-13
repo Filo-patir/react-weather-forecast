@@ -1,6 +1,6 @@
-export interface LocationData{
-    location:{
-        latitude:number,
-        longitude:number
-    }
+export interface LocationData {
+  location: {
+    latitude: number;
+    longitude: number;
+  };
 }
