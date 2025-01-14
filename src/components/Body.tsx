@@ -44,10 +44,12 @@ export function Body({ lat, lon, theme }: { lat: number; lon: number; theme: The
     refetchWeatherData();
   }, 60000);
 
+  window.history.pushState({}, '', `/${weatherData.name},${weatherData.sys.country}`);
+
   return (
     <main className="flex flex-col items-center justify-center w-full gap-4 py-8 sm:flex-row sm:flex-wrap">
       <Panel className="flex-col w-full py-11 sm:w-1/3" theme={theme}>
-        <h2 className="py-6 text-3xl">{`${weatherData.name}, ${weatherData.sys.country}`}</h2>
+        <h2 className="py-6 text-3xl text-center w-full">{`${weatherData.name}, ${weatherData.sys.country}`}</h2>
         <div className="flex flex-col items-center justify-center py-6">
           <h1 id="time" className="text-6xl font-bold">
             {toLocalTime(weatherData.dt, weatherData.timezone)}
@@ -136,9 +138,9 @@ export function Body({ lat, lon, theme }: { lat: number; lon: number; theme: The
             );
           })}
       </Panel>
-      <Panel className="flex flex-col w-full sm:w-8/12 overflow-x-auto" theme={theme}>
+      <Panel className="flex flex-col w-full sm:w-8/12" theme={theme}>
         <h3>Hourly Forecast</h3>
-        <div className="flex">
+        <div className="flex w-full overflow-x-auto">
           {weatherForecast.list.slice(0, 7).map((item) => {
             return (
               <HourlyForecast
