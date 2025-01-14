@@ -17,7 +17,8 @@ export default function App() {
   const { data: searchData, isPending: isSearchPending } = useSearch(path ?? '');
   useEffect(() => {
     if (path) {
-      if (!isSearchPending) {
+      if (!isSearchPending && searchData.length > 0) {
+        console.log(searchData);
         setCoords({ lat: searchData[0]?.latitude, lon: searchData[0]?.longitude });
       }
     } else {
@@ -34,9 +35,14 @@ export default function App() {
         <Body lat={coords.lat} lon={coords.lon} theme={theme} />
       ) : (
         <div className="flex flex-col items-center justify-center py-4">
-          <h1 className="text-2xl font-bold">Please allow location access</h1>
-          <button onClick={() => {}} className="px-4 py-2 font-bold bg-blue-500 rounded hover:bg-blue-700text-white">
-            Next Update ISA
+          <h1 className="text-2xl font-bold text-center">Opps We ran into an error Wanna go to the live location?</h1>
+          <button
+            className="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+            onClick={() => {
+              setCoords({ lat: location?.location.latitude, lon: location?.location.longitude });
+            }}
+          >
+            Go Live
           </button>
         </div>
       )}
