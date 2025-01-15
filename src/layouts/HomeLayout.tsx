@@ -13,6 +13,7 @@ export function HomeLayout() {
   const navigate = useNavigate();
 
   document.body.className = `${theme === Theme.LIGHT ? 'bg-dark-gradient text-white' : 'bg-light-gradient'} min-h-screen`;
+  document.body.style.transition = 'background-color 0.5s linear';
 
   useEffect(() => {
     if (!isLocationPending && !city) navigate(`/${location.city.name}`);

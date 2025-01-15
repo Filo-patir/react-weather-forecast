@@ -10,6 +10,9 @@ export const Panel = ({ children, className, theme }: Props) => {
   return (
     <div
       className={`flex justify-center items-center rounded-3xl shadow-2xl p-3 ${theme === Theme.DARK ? 'bg-light-gray' : 'bg-dark-gray'} ${className}`}
+      style={{
+        transition: 'background-color 0.5s linear',
+      }}
     >
       {children}
     </div>

@@ -1,4 +1,5 @@
 import React from 'react';
+import * as motion from 'motion/react-client';
 
 import dark from '../assets/images/dark-mode.svg';
 import light from '../assets/images/light-mode.svg';
@@ -18,7 +19,15 @@ export const ToggleThemeButton = ({ theme, setTheme }: { theme: Theme; setTheme:
           }
           onClick={toggleTheme}
         >
-          <div className="w-5 h-5 m-2 bg-black rounded-full"></div>
+          <motion.div
+            className="w-5 h-5 m-2 bg-black rounded-full"
+            layout
+            transition={{
+              type: 'spring',
+              visualDuration: 0.5,
+              bounce: 0.5,
+            }}
+          />
         </div>
         <p className="py-3 transition-all">{theme} Mode</p>
       </div>
