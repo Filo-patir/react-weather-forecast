@@ -1,13 +1,15 @@
 import React, { useRef, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import SearchSuggestions from './SearchSuggestions';
 
 const searchContext = React.createContext<string | undefined>(undefined);
 
-export default function Searchbar({ setCoords }: { setCoords: (coords: { lat: number; lon: number }) => void }) {
+export default function Searchbar() {
   const [placeholder, setPlaceholder] = useState('Search for your preferred city...');
   const [inputValue, setInputValue] = useState('');
   const [searchQuery, setSearchQuery] = useState<string | undefined>();
+  const navigate = useNavigate();
   const timer = useRef(
     setTimeout(() => {
       setSearchQuery(inputValue);
@@ -21,11 +23,11 @@ export default function Searchbar({ setCoords }: { setCoords: (coords: { lat: nu
       setSearchQuery(inputValue);
     }, 500);
   };
-  const handleOnClick = (lat?: number, lon?: number) => {
+  const handleOnClick = (cityname?: string) => {
     setInputValue('');
     setSearchQuery(undefined);
-    if (lat && lon) {
-      setCoords({ lat, lon });
+    if (cityname) {
+      navigate(`/${cityname}`);
     }
   };
   function handleWindowResize() {

@@ -5,7 +5,7 @@ import useSearch from '../api/searchLocation';
 type Props = {
   searchQuery: string;
   onClick: {
-    (lat?: number, lon?: number): void;
+    (cityname?: string): void;
   };
 };
 
@@ -40,7 +40,7 @@ export default function SearchSuggestions({ searchQuery, onClick }: Props) {
                   <button
                     className="hover:opacity-60"
                     onClick={() => {
-                      onClick(item.latitude, item.longitude);
+                      onClick(item.name);
                     }}
                   >
                     {item.name}, {item.region}

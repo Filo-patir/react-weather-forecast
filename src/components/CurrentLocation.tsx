@@ -1,15 +1,16 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import useLocation from '../api/getLocation';
 import icon from '../assets/images/current-location.svg';
 
-export default function CurrentLocation({ setCoords }: { setCoords: (coords: { lat: number; lon: number }) => void }) {
+export default function CurrentLocation() {
   const { data: fetchLocationData } = useLocation();
+  const navigate = useNavigate();
   const setCurrentLocation = () => {
-    setCoords({
-      lat: fetchLocationData?.location.latitude,
-      lon: fetchLocationData?.location.longitude,
-    });
+    if (fetchLocationData) {
+      navigate(`/${fetchLocationData.city.name}`);
+    }
   };
   return (
     <>

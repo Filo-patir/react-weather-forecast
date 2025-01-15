@@ -7,6 +7,8 @@ import { BrowserRouter, Route, Routes } from 'react-router';
 
 import App from './App';
 import { Providers } from './contexts';
+import { HomeLayout } from './layouts/HomeLayout';
+import { NotFound } from './pages/NotFound';
 import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
@@ -14,7 +16,10 @@ root.render(
   <BrowserRouter>
     <Providers>
       <Routes>
-        <Route index path=":city?" element={<App />} />
+        <Route path="/" element={<HomeLayout />}>
+          <Route path=":city" element={<App />} />
+        </Route>
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </Providers>
   </BrowserRouter>,
