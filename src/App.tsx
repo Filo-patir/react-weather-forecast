@@ -19,7 +19,7 @@ export default function App() {
         setCoords({ lat: searchData[0]?.latitude, lon: searchData[0]?.longitude });
       }
     }
-  }, [isSearchPending]);
+  }, [isSearchPending, city]);
 
   return (
     <>

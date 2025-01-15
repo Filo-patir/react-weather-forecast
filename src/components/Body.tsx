@@ -55,7 +55,7 @@ export function Body({ lat, lon, theme }: { lat: number; lon: number; theme: The
           <p>{toLocalDayMonth(weatherData.dt, weatherData.timezone)}</p>
         </div>
       </Panel>
-      <Panel className="flex-col flex-wrap justify-between w-full gap-4 py-8 sm:w-1/2 sm:flex-row" theme={theme}>
+      <Panel className="flex-col flex-wrap justify-around w-full gap-4 py-8 sm:w-1/2 sm:flex-row" theme={theme}>
         <div className="flex flex-col items-center justify-center w-1/4 text-center">
           <div>
             <h1>{weatherData.main.temp.toFixed(0)}&#8451;</h1>
@@ -63,15 +63,15 @@ export function Body({ lat, lon, theme }: { lat: number; lon: number; theme: The
           </div>
           <div className="hidden p-3 sm:flex flex-col items-center justify-center">
             <div className="flex items-center justify-center py-3">
-              <img className="w-12 h-12" src={`${ToIcon('01d')}`} alt="weather icon" />
-              <div className="flex flex-col items-center justify-center">
+              <img className="w-1/3 h-1/3" src={`${ToIcon('01d')}`} alt="weather icon" />
+              <div className="flex flex-col items-center justify-center px-3">
                 <h6>Sunrise</h6>
                 <p>{toLocalTime(weatherData.sys.sunrise, weatherData.timezone)}</p>
               </div>
             </div>
             <div className="flex items-center justify-center">
-              <img className="px-3" src={`${ToIcon('01n')}`} alt="weather icon" />
-              <div className="flex flex-col items-center justify-center">
+              <img className="w-1/3 h-1/3" src={`${ToIcon('01n')}`} alt="weather icon" />
+              <div className="flex flex-col items-center justify-center px-3">
                 <h6>Sunset</h6>
                 <p>{toLocalTime(weatherData.sys.sunset, weatherData.timezone)}</p>
               </div>
