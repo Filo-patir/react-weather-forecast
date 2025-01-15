@@ -2,6 +2,8 @@ import React, { useEffect } from 'react';
 
 import './App.css';
 
+import { useParams } from 'react-router';
+
 import useLocation from './api/getLocation';
 import useSearch from './api/searchLocation';
 import { Body } from './components/Body';
@@ -10,15 +12,14 @@ import { useCoords, useTheme } from './contexts';
 import { Theme } from './utils/modeUtils';
 
 export default function App() {
+  const { city } = useParams();
   const { coords, setCoords } = useCoords();
   const { theme, setTheme } = useTheme();
   const { data: location, isPending: isLocationPending } = useLocation();
-  const path = window.location.pathname.replace('/', '').toString().split(',')[0];
-  const { data: searchData, isPending: isSearchPending } = useSearch(path ?? '');
+  const { data: searchData, isPending: isSearchPending } = useSearch(city ?? '');
   useEffect(() => {
-    if (path) {
+    if (city) {
       if (!isSearchPending && searchData.length > 0) {
-        console.log(searchData);
         setCoords({ lat: searchData[0]?.latitude, lon: searchData[0]?.longitude });
       }
     } else {

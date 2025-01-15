@@ -44,8 +44,6 @@ export function Body({ lat, lon, theme }: { lat: number; lon: number; theme: The
     refetchWeatherData();
   }, 60000);
 
-  window.history.pushState({}, '', `/${weatherData.name},${weatherData.sys.country}`);
-
   return (
     <main className="flex flex-col items-center justify-center w-full gap-4 py-8 sm:flex-row sm:flex-wrap">
       <Panel className="flex-col w-full py-11 sm:w-1/3" theme={theme}>
@@ -58,14 +56,14 @@ export function Body({ lat, lon, theme }: { lat: number; lon: number; theme: The
         </div>
       </Panel>
       <Panel className="flex-col flex-wrap justify-between w-full gap-4 py-8 sm:w-1/2 sm:flex-row" theme={theme}>
-        <div className="flex flex-col items-center justify-center w-1/5 text-center">
+        <div className="flex flex-col items-center justify-center w-1/4 text-center">
           <div>
             <h1>{weatherData.main.temp.toFixed(0)}&#8451;</h1>
             <p>Feels like: {weatherData.main.feels_like.toFixed(0)}&#8451;</p>
           </div>
-          <div className="hidden w-1/2 py-3 sm:block">
+          <div className="hidden p-3 sm:flex flex-col items-center justify-center">
             <div className="flex items-center justify-center py-3">
-              <img className="px-3" src={`${ToIcon('01d')}`} alt="weather icon" />
+              <img className="w-12 h-12" src={`${ToIcon('01d')}`} alt="weather icon" />
               <div className="flex flex-col items-center justify-center">
                 <h6>Sunrise</h6>
                 <p>{toLocalTime(weatherData.sys.sunrise, weatherData.timezone)}</p>

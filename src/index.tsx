@@ -3,17 +3,21 @@ import ReactDOM from 'react-dom/client';
 
 import './index.css';
 
+import { BrowserRouter, Route, Routes } from 'react-router';
+
 import App from './App';
 import { Providers } from './contexts';
 import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 root.render(
-  <React.StrictMode>
+  <BrowserRouter>
     <Providers>
-      <App />
+      <Routes>
+        <Route index path=":city?" element={<App />} />
+      </Routes>
     </Providers>
-  </React.StrictMode>,
+  </BrowserRouter>,
 );
 
 // If you want to start measuring performance in your app, pass a function
