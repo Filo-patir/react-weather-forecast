@@ -10,7 +10,7 @@ export default function useSearch(query: string) {
 
 const fetchData = async ({ queryKey }: { queryKey: string[] }) => {
   const apikey = process.env.REACT_APP_NINJA_API_KEY ?? 'no key';
-  const res = await fetch(`https://api.api-ninjas.com/v1/city?name=${queryKey[1]}&limit=5`, {
+  const res = await fetch(`https://api.api-ninjas.com/v1/city?name=${queryKey[1]}`, {
     headers: {
       'X-Api-Key': apikey,
     },

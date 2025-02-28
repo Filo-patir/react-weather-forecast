@@ -19,7 +19,7 @@ export default function App() {
         setCoords({ lat: searchData[0]?.latitude, lon: searchData[0]?.longitude });
       }
     }
-  }, [isSearchPending, city]);
+  }, [isSearchPending, searchData, setCoords, city]);
 
   return (
     <>
@@ -28,7 +28,7 @@ export default function App() {
       ) : isSearchPending ? (
         <p>Loading ... </p>
       ) : (
-        <p>Y3m mafe4 </p>
+        <p className="w-full text-center">Unkown Error Happend</p>
       )}
     </>
   );
